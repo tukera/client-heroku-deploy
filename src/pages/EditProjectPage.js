@@ -1,95 +1,86 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL
 
 function EditProjectPage(props) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const projectId = props.match.params.id;
-  
-  
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const projectId = props.match.params.id
+
   useEffect(() => {
     // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');
-    
-    // Send the token through the request "Authorization" Headers 
+    const storedToken = localStorage.getItem('authToken')
+
+    // Send the token through the request "Authorization" Headers
     axios
-      .get(
-        `${API_URL}/projects/${projectId}`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }    
-      )
-      .then((response) => {
-        const oneProject = response.data;
-        setTitle(oneProject.title);
-        setDescription(oneProject.description);
+      .get(`${API_URL}/projects/${projectId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` }
       })
-      .catch((error) => console.log(error));
-    
-  }, [projectId]);
-  
+      .then((response) => {
+        const oneProject = response.data
+        setTitle(oneProject.title)
+        setDescription(oneProject.description)
+      })
+      .catch((error) => console.log(error))
+  }, [projectId])
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
-    const requestBody = { title, description };
-  
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');  
+    e.preventDefault()
+    const requestBody = { title, description }
 
-    // Send the token through the request "Authorization" Headers   
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem('authToken')
+
+    // Send the token through the request "Authorization" Headers
     axios
-      .put(
-        `${API_URL}/projects/${projectId}`,
-        requestBody,
-        { headers: { Authorization: `Bearer ${storedToken}` } }              
-      )
+      .put(`${API_URL}/projects/${projectId}`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` }
+      })
       .then((response) => {
         props.history.push(`/projects/${projectId}`)
-      });
-  };
-  
-  
+      })
+  }
+
   const deleteProject = () => {
     // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');      
-    
-    // Send the token through the request "Authorization" Headers   
-    axios
-      .delete(
-        `${API_URL}/projects/${projectId}`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }           
-      )
-      .then(() => props.history.push("/projects"))
-      .catch((err) => console.log(err));
-  };  
+    const storedToken = localStorage.getItem('authToken')
 
-  
+    // Send the token through the request "Authorization" Headers
+    axios
+      .delete(`${API_URL}/projects/${projectId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` }
+      })
+      .then(() => props.history.push('/projects'))
+      .catch((err) => console.log(err))
+  }
+
   return (
-    <div className="EditProjectPage">
+    <div className='EditProjectPage'>
       <h3>Edit the Project</h3>
 
       <form onSubmit={handleFormSubmit}>
         <label>Title:</label>
         <input
-          type="text"
-          name="title"
+          type='text'
+          name='title'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        
+
         <label>Description:</label>
         <textarea
-          name="description"
+          name='description'
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <button type="submit">Update Project</button>
+        <button type='submit'>Update Project</button>
       </form>
 
       <button onClick={deleteProject}>Delete Project</button>
     </div>
-  );
+  )
 }
 
-export default EditProjectPage;
+export default EditProjectPage

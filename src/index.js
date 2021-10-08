@@ -1,11 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import reportWebVitals from './reportWebVitals'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import { AuthProviderWrapper } from "./context/auth.context"; // <== IMPORT
+import App from './App'
+import { AuthProviderWrapper } from './context/auth.context' // <== IMPORT
+
+import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +16,7 @@ ReactDOM.render(
       </AuthProviderWrapper>
     </Router>
   </React.StrictMode>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)
 
-reportWebVitals();
+reportWebVitals()

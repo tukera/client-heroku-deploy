@@ -1,35 +1,34 @@
-import "./App.css";
-import { Switch, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import HomePage from "./pages/HomePage";
-import ProjectListPage from "./pages/ProjectListPage";
-import ProjectDetailsPage from "./pages/ProjectDetailsPage";
-import EditProjectPage from "./pages/EditProjectPage";
+import React, { useState, useEffect } from 'react'
+import { Switch, Route } from 'react-router-dom'
 
-import SignupPage from "./pages/SignupPage";
-import LoginPage from "./pages/LoginPage";
-import PrivateRoute from "./components/PrivateRoute";    // <== IMPORT
-import AnonRoute from "./components/AnonRoute";        // <== IMPORT
+import CoinDetailPage from './pages/CoinDetailPage'
+import SignupPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
 
+import Navbar from './components/Navbar'
+import Table from './components/Table'
+import AnonRoute from './components/AnonRoute'
 
-function App() {
+import './App.css'
+
+const App = () => {
   return (
-    <div className="App">
+    <div className='App'>
       <Navbar />
-
-      <Switch>      
-        <Route exact path="/" component={HomePage} />
-        
-        {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
-        <PrivateRoute exact path="/projects" component={ProjectListPage} />
-        <PrivateRoute exact path="/projects/:id" component={ProjectDetailsPage} />
-        <PrivateRoute exact path="/projects/edit/:id" component={EditProjectPage} />
-        
-        <AnonRoute exact path="/signup" component={SignupPage} />
-        <AnonRoute exact path="/login" component={LoginPage} />
-      </Switch>
+      <section>
+        <div className='container'>
+          <Switch>
+            <Route exact path='/'>
+              <Table />
+            </Route>
+            <Route path='/coins/:id' component={CoinDetailPage} />
+            <AnonRoute exact path='/signup' component={SignupPage} />
+            <AnonRoute exact path='/login' component={LoginPage} />
+          </Switch>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
