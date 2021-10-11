@@ -5,16 +5,18 @@ import CoinDetailPage from './pages/CoinDetailPage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 
-import Navbar from './components/Navbar'
+import Header from './components/Navbar'
 import Table from './components/Table'
 import AnonRoute from './components/AnonRoute'
 
+import 'bootstrap/dist/js/bootstrap.bundle'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 const App = () => {
   return (
     <div className='App'>
-      <Navbar />
+      <Header />
       <section>
         <div className='container'>
           <Switch>
