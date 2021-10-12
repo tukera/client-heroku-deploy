@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SearchList from './SearchList'
 
 import Table from './Table'
 
-const Search = ({ coins }) => {
-  const [search, setSearch] = useState('')
+const Search = ({ coins, search }) => {
   let filteredCoins
 
   if (coins.length) {

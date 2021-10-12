@@ -4,20 +4,21 @@ import CryptosApi from '../services/Cryptocurrency.handler'
 
 const HomePage = () => {
   const [coins, setCoins] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     const Api = new CryptosApi()
 
     Api.getAllCryptos()
-      .then((coins) => {
-        setCoins(coins.data)
+      .then((res) => {
+        setCoins(res.data)
       })
       .catch((error) => console.error(error))
   }, [])
 
   return (
     <div className='container'>
-      <Search coins={coins} />
+      <Search coins={coins} search={search} />
     </div>
   )
 }
