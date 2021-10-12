@@ -14,9 +14,9 @@ class CryptosApi {
     return this.api.get('/')
   }
 
-  getPrices (id, day) {
-    return this.api.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=eur&days=${day}`)
-  }
+  // getPrices (id, day) {
+  //   return this.api.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=eur&days=${day}`)
+  // }
 }
 
 export default CryptosApi
