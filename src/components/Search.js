@@ -5,17 +5,20 @@ import Table from './Table'
 
 const Search = ({ coins }) => {
   const [search, setSearch] = useState('')
+  let filteredCoins
 
-  const filteredCoins = coins?.filter(
-    coin => {
-      return (
-        coin
-          .name
-          ?.toLowerCase()
-          .includes(search?.toLowerCase())
-      )
-    }
-  )
+  if (coins) {
+    filteredCoins = coins?.filter(
+      coin => {
+        return (
+          coin
+            .name
+            ?.toLowerCase()
+            .includes(search?.toLowerCase())
+        )
+      }
+    )
+  }
 
   const handleChange = (e) => {
     setSearch(e.target.value)
