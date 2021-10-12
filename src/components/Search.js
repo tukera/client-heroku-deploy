@@ -6,7 +6,7 @@ import Table from './Table'
 const Search = ({ coins }) => {
   const [search, setSearch] = useState('')
 
-  const filteredCoins = Object.values(coins).filter(
+  const filteredCoins = coins.filter(
     coin => {
       return (
         coin
