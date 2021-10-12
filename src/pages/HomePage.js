@@ -18,7 +18,7 @@ const HomePage = () => {
 
   return (
     <div className='container'>
-      <Search coins={coins} search={search} />
+      <Search coins={coins} search={search} setSearch={setSearch} />
     </div>
   )
 }

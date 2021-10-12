@@ -3,7 +3,7 @@ import SearchList from './SearchList'
 
 import Table from './Table'
 
-const Search = ({ coins, search }) => {
+const Search = ({ coins, search, setSearch }) => {
   let filteredCoins
 
   if (coins.length) {
