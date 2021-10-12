@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import axios from 'axios'
 
-import CryptosApi from '../services/CryptosHandler'
+import CryptosApi from '../services/Cryptocurrency.handler'
 import CoinHistory from '../components/CoinHistory'
 import CoinDetail from '../components/CoinDetail'
 

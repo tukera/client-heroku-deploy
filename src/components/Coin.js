@@ -12,30 +12,34 @@ const Coin = ({
 }) => {
   return (
     <tr>
-      <td class='align-middle font-monospace fw-bold'>
-        <span class='table-ranking'>
+      <td className='align-middle font-monospace fw-bold'>
+        <span className='table-ranking'>
           <strong>{rank}.</strong>
         </span>
-        <img src={logo} alt={name} width='25' />
-        <h2>{name}</h2>
-        <span class='badge bg-light text-dark'>{symbol}</span>
+        <img src={logo} alt={name} width='25' className='mx-2' />
+        {name}
+        <span className='badge bg-light text-dark'>{symbol}</span>
       </td>
-      <td class='align-middle font-monospace fw-bold'>€ {price}</td>
-      <td class='align-middle font-monospace fw-bold'>
-        <span class='text'>
-          {priceChange < 0 ? (
-            <p className='col-md-1 coin-percent red'>
-              {priceChange.toFixed(2)}%
-            </p>
-          ) : (
-            <p className='col-md-1 coin-percent green'>
-              {priceChange.toFixed(2)}%
-            </p>
-          )}
+      <td className='align-middle font-monospace fw-bold'>
+        € {price < 0
+        ? (<span className='col-md-1 text-danger'>{price}</span>)
+        : (<span className='col-md-1 text-success'>{price}</span>)}
+      </td>
+      <td>
+        <span className='align-middle font-monospace fw-bold'>
+          {priceChange < 0
+            ? (<span className='col-md-1 coin-percent text-danger'>{priceChange.toFixed(2)}</span>)
+            : (<span className='col-md-1 coin-percent text-success'>{priceChange.toFixed(2)}</span>)} %
         </span>
       </td>
-      <td class='align-middle font-monospace fw-bold'>
+      <td className='align-middle font-monospace fw-bold'>
         €{marketCap.toLocaleString()}
+      </td>
+      <td>
+        <button type='submit' className='btn btn-primary btn-sm w-100'>
+          <i class="fas fa-star"></i>{' '}
+          Add
+        </button>
       </td>
     </tr>
   )

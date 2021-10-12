@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
+import HomePage from './pages/HomePage'
 import CoinDetailPage from './pages/CoinDetailPage'
+import UserDetailPage from './pages/UserDetailPage'
+import NewsPage from './pages/NewsPage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 
-import Header from './components/Navbar'
-import Table from './components/Table'
+import Navbar from './components/Navbar'
 import AnonRoute from './components/AnonRoute'
 
 import 'bootstrap/dist/js/bootstrap.bundle'
@@ -16,19 +18,18 @@ import './App.css'
 const App = () => {
   return (
     <div className='App'>
-      <Header />
-      <section>
-        <div className='container'>
-          <Switch>
-            <Route exact path='/'>
-              <Table />
-            </Route>
-            <Route path='/coins/:id' component={CoinDetailPage} />
-            <AnonRoute exact path='/signup' component={SignupPage} />
-            <AnonRoute exact path='/login' component={LoginPage} />
-          </Switch>
-        </div>
-      </section>
+      <Navbar />
+      <main>
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/coins/:id' component={CoinDetailPage} />
+          <Route exact path='/user/:id' component={UserDetailPage} />
+          <Route exact path='/news' component={NewsPage} />
+          <AnonRoute exact path='/signup' component={SignupPage} />
+          <AnonRoute exact path='/login' component={LoginPage} />
+          <AnonRoute exact path='/logout' component={LoginPage} />
+        </Switch>
+      </main>
     </div>
   )
 }
