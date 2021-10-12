@@ -4,7 +4,7 @@ import Coin from './Coin'
 const SearchList = ({ filteredCoins }) => {
   return (
     <>
-      {filteredCoins.map((coin) => {
+      {filteredCoins?.map((coin) => {
         return (
           <Coin
             key={coin.id}
