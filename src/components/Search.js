@@ -8,7 +8,7 @@ const Search = ({ coins }) => {
   let filteredCoins
 
   if (coins.length) {
-    // console.log('COINS', coins)
+    console.log('COINS', coins)
     filteredCoins = coins?.filter(
       coin => {
         return (
