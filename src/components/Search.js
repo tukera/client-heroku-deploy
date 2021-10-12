@@ -6,8 +6,15 @@ import Table from './Table'
 const SearchBar = ({ coins }) => {
   const [search, setSearch] = useState('')
 
-  const filteredCoins = coins.filter((coin) =>
-    coin.name?.toLowerCase().includes(search?.toLowerCase())
+  const filteredCoins = coins.filter(
+    coin => {
+      return (
+        coin
+          .name
+          ?.toLowerCase()
+          .includes(search?.toLowerCase())
+      )
+    }
   )
 
   const handleChange = (e) => {

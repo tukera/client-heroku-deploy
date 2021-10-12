@@ -37,7 +37,7 @@ const Coin = ({
       </td>
       <td>
         <button type='submit' className='btn btn-primary btn-sm w-100'>
-          <i class="fas fa-star"></i>{' '}
+          <i className="fas fa-star"></i>{' '}
           Add
         </button>
       </td>

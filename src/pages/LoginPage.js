@@ -55,7 +55,7 @@ function LoginPage (props) {
       {errorMessage && <p className='error-message'>{errorMessage}</p>}
 
       <p>Don't have an account yet?</p>
-      <Link to={'auth/signup'}> Sign Up</Link>
+      <Link to='auth/signup'> Sign Up</Link>
     </div>
   )
 }
