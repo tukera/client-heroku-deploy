@@ -3,10 +3,10 @@ import SearchList from './SearchList'
 
 import Table from './Table'
 
-const SearchBar = ({ coins }) => {
+const Search = ({ coins }) => {
   const [search, setSearch] = useState('')
 
-  const filteredCoins = coins.filter(
+  const filteredCoins = Object.values(coins).filter(
     coin => {
       return (
         coin
@@ -45,4 +45,4 @@ const SearchBar = ({ coins }) => {
   )
 }
 
-export default SearchBar
+export default Search
