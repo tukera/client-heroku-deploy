@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import NewsApi from '../services/News.handler'
+// import NewsApi from '../services/News.handler'
 
 import NewsList from '../components/NewsList'
-const API_URL = process.env.REACT_APP_API_URL
+// const API_URL = process.env.REACT_APP_API_URL
 
 const NewsPage = () => {
   const [news, setNews] = useState([])
 
   useEffect(() => {
-    const Api = new NewsApi()
-
-    Api.getAllNews()
+    axios
+      .get('https://newsapi.org/v2/everything?apiKey=883eb66584f04c30a3b6df5b370d31ea&q=cryptocurrencies')
       .then((res) => {
-        setNews(res.data)
+        setNews(res.data.articles)
       })
-      .catch((error) => console.error(error))
+      .catch((error) => console.log(error))
   }, [])
+
+  // useEffect(() => {
+  //   const Api = new NewsApi()
+
+  //   Api.getAllNews()
+  //     .then((res) => {
+  //       setNews(res.data)
+  //     })
+  //     .catch((error) => console.error(error))
+  // }, [])
 
   return (
     <section>
