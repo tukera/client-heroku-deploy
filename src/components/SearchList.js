@@ -1,7 +1,7 @@
 import React from 'react'
 import Coin from './Coin'
 
-const SearchList = ({ filteredCoins }) => {
+const SearchList = ({ filteredCoins, coins }) => {
   return (
     <>
       {filteredCoins?.map((coin) => {
@@ -16,6 +16,7 @@ const SearchList = ({ filteredCoins }) => {
             price={coin.current_price}
             priceChange={coin.price_change_percentage_24h_in_currency}
             marketCap={coin.market_cap}
+            coinsInfo={coins}
           />
         )
       })}

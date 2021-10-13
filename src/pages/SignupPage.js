@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const API_URL = process.env.REACT_APP_API_URL
 
-function SignupPage(props) {
+function SignupPage (props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -32,31 +32,61 @@ function SignupPage(props) {
   }
 
   return (
-    <div className='SignupPage'>
-      <h1>Sign Up</h1>
-
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type='text' name='email' value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type='password'
-          name='password'
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <label>Name:</label>
-        <input type='text' name='name' value={name} onChange={handleName} />
-
-        <button type='submit'>Sign Up</button>
-      </form>
-
-      {errorMessage && <p className='error-message'>{errorMessage}</p>}
-
+    <div className='SignupPage container d-flex flex-column align-items-center'>
+      <h2 className='my-5'>Create account</h2>
+      <div className='card w-25 p-3 mb-3'>
+        <form
+          className='d-flex flex-column align-items-center'
+          onSubmit={handleSignupSubmit}
+        >
+          <div className='mb-3'>
+            <label for='exampleFormControlInput1' className='form-label'>
+              Username
+            </label>
+            <input
+              type='text'
+              name='name'
+              value={name}
+              className='form-control'
+              onChange={handleName}
+            />
+          </div>
+          <div className='mb-3'>
+            <label for='exampleFormControlInput1' className='form-label'>
+              Email address
+            </label>
+            <input
+              type='email'
+              name='email'
+              value={email}
+              className='form-control'
+              onChange={handleEmail}
+            />
+          </div>
+          <div className='mb-3'>
+            <label for='exampleFormControlInput1' className='form-label'>
+              Password
+            </label>
+            <input
+              type='password'
+              name='password'
+              value={password}
+              className='form-control'
+              onChange={handlePassword}
+            />
+          </div>
+          <button type='submit' className='btn btn-primary'>
+            Create account
+          </button>
+          {errorMessage && (
+            <div className='alert alert-danger' role='alert'>
+              {errorMessage}
+            </div>
+          )}
+        </form>
+      </div>
       <p>Already have account?</p>
-      <Link to={'/login'}> Login</Link>
+      <Link to='/login'> Login</Link>
     </div>
   )
 }

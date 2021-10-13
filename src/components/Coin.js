@@ -1,4 +1,5 @@
 import React from 'react'
+import AddCoins from './AddCoins'
 
 const Coin = ({
   id,
@@ -8,8 +9,11 @@ const Coin = ({
   symbol,
   price,
   priceChange,
-  marketCap
+  marketCap,
+  coinsInfo
 }) => {
+  const storedToken = localStorage.getItem('authToken')
+
   return (
     <tr>
       <td className='align-middle font-monospace fw-bold'>
@@ -36,10 +40,11 @@ const Coin = ({
         €{marketCap.toLocaleString()}
       </td>
       <td>
-        <button type='submit' className='btn btn-primary btn-sm w-100'>
-          <i className="fas fa-star"></i>{' '}
-          Add
-        </button>
+        <AddCoins
+          storedToken={storedToken}
+          id={id}
+          coinsInfo={coinsInfo}
+        />
       </td>
     </tr>
   )

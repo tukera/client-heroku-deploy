@@ -20,14 +20,14 @@ const HomePage = () => {
   //     })
   //     .catch((error) => console.error(error))
   // }, [])
-  
+
   useEffect(() => {
     axios
       .get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_rank_desc&per_page=100&page=1&price_change_percentage=1y,1h,24h,7d,14d,30d,200d&sparkline=true')
       .then(res => {
-        setCoins(res.data);
+        setCoins(res.data)
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
   }, [])
 
   const filteredCoins = coins?.filter(
@@ -40,6 +40,7 @@ const HomePage = () => {
       )
     }
   )
+
   const handleChange = (e) => {
     setSearch(e.target.value)
   }
@@ -62,7 +63,7 @@ const HomePage = () => {
       </div>
       <div className='row'>
         <Table>
-          <SearchList filteredCoins={filteredCoins} />
+          <SearchList filteredCoins={filteredCoins} coins={coins} />
         </Table>
       </div>
     </div>

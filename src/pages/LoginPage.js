@@ -22,8 +22,6 @@ function LoginPage (props) {
     axios
       .post(`${API_URL}/auth/login`, requestBody)
       .then((response) => {
-        console.log('JWT token', response.data.authToken)
-
         const token = response.data.authToken
         logInUser(token)
         props.history.push('/')
@@ -35,25 +33,44 @@ function LoginPage (props) {
   }
 
   return (
-    <div className='LoginPage'>
-      <h1>Login</h1>
-
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type='text' name='email' value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type='password'
-          name='password'
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type='submit'>Login</button>
-      </form>
-      {errorMessage && <p className='error-message'>{errorMessage}</p>}
-
+    <div className='LoginPage container d-flex flex-column align-items-center'>
+      <h2 className='my-5'>Login</h2>
+      <div className='card w-25 p-3 mb-3'>
+        <form
+          onSubmit={handleLoginSubmit}
+          className='d-flex flex-column align-items-center'
+        >
+          <div className='mb-3'>
+            <label className='form-label'>Email:</label>
+            <input
+              type='text'
+              name='email'
+              value={email}
+              className='form-control'
+              placeholder='rockstar@ironhack.com'
+              onChange={handleEmail}
+            />
+          </div>
+          <div className='mb-3'>
+            <label className='form-label'>Password</label>
+            <input
+              className='form-control'
+              type='password'
+              name='password'
+              value={password}
+              onChange={handlePassword}
+            />
+          </div>
+          <button className='btn btn-primary' type='submit'>
+            Login
+          </button>
+        </form>
+        {errorMessage && (
+          <div className='alert alert-danger' role='alert'>
+            {errorMessage}
+          </div>
+        )}
+      </div>
       <p>Don't have an account yet?</p>
       <Link to='auth/signup'> Sign Up</Link>
     </div>
