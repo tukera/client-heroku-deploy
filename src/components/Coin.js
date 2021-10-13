@@ -40,11 +40,7 @@ const Coin = ({
         €{marketCap.toLocaleString()}
       </td>
       <td>
-        <AddCoins
-          storedToken={storedToken}
-          id={id}
-          coinsInfo={coinsInfo}
-        />
+        <i className='fas fa-star' />
       </td>
     </tr>
   )
