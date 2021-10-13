@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import NewsApi from '../services/News.handler'
 
 import NewsList from '../components/NewsList'
 const API_URL = process.env.REACT_APP_API_URL
@@ -8,12 +9,13 @@ const NewsPage = () => {
   const [news, setNews] = useState([])
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/news/`)
+    const Api = new NewsApi()
+
+    Api.getAllNews()
       .then((res) => {
         setNews(res.data)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => console.error(error))
   }, [])
 
   return (
