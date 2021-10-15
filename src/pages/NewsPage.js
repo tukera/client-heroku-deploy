@@ -3,25 +3,37 @@ import axios from 'axios'
 
 import NewsCard from '../components/NewsCard'
 
-const API_KEY = process.env.REACT_APP_API_NEWS_KEY
-const API_URL = process.env.REACT_APP_API_NEWS_URL
+// const API_KEY = process.env.REACT_APP_API_NEWS_KEY
+// const API_URL = process.env.REACT_APP_API_NEWS_URL
 
 const NewsPage = () => {
   const [news, setNews] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const getAllNews = () => {
-    axios
-      .get(`${API_URL}apiKey=${API_KEY}`)
-      .then((response) => {
-        console.log(response.data.articles)
-        setNews(response.data.articles)
-        setLoading(false)
-      })
-      .catch((error) => console.log(error))
+  const options = {
+    method: 'GET',
+    url: 'https://webit-news-search.p.rapidapi.com/search',
+    params: {
+      q: 'cryptocurrency',
+      language: 'en',
+      number: '10',
+      offset: '0',
+      has_image: 'true'
+    },
+    headers: {
+      'x-rapidapi-host': process.env.REACT_APP_API_NEWS_URL,
+      'x-rapidapi-key': process.env.REACT_APP_API_NEWS_KEY
+    }
   }
+
   useEffect(() => {
-    getAllNews()
+    const fetchNews = async () => {
+      const response = await axios(options)
+      console.log(response.data.data.results)
+      setNews(response.data.data.results)
+      setLoading(false)
+    }
+    fetchNews()
   }, [])
 
   return (
