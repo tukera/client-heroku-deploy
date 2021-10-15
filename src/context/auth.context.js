@@ -4,7 +4,7 @@ const API_URL = process.env.REACT_APP_API_URL
 
 const AuthContext = React.createContext()
 
-function AuthProviderWrapper(props) {
+function AuthProviderWrapper (props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
@@ -27,7 +27,7 @@ function AuthProviderWrapper(props) {
           setIsLoggedIn(true)
           setIsLoading(false)
         })
-        .catch(() => {
+        .catch((error) => {
           // If the server sends an error response (invalid token) ❌
           setIsLoggedIn(false)
           setUser(null)

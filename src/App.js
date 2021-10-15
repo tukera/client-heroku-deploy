@@ -1,33 +1,43 @@
-import React, { Suspense } from 'react'
+import './App.css'
 import { Switch, Route } from 'react-router-dom'
-
-import LoginPage from './pages/LoginPage'
-import SignupPage from './pages/SignupPage'
+import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
 import NewsPage from './pages/NewsPage'
+import ProjectListPage from './pages/ProjectListPage'
+import ProjectDetailsPage from './pages/ProjectDetailsPage'
+import EditProjectPage from './pages/EditProjectPage'
 
-import Navbar from './components/Navbar'
-import AnonRoute from './components/AnonRoute'
+import SignupPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
+import PrivateRoute from './components/PrivateRoute' // <== IMPORT
+import AnonRoute from './components/AnonRoute' // <== IMPORT
 
-import 'bootstrap/dist/js/bootstrap.bundle'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
-
-const App = () => {
+function App () {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className='App'>
-        <Navbar />
-        <main>
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <AnonRoute exact path='/login' component={LoginPage} />
-            <AnonRoute exact path='/signup' component={SignupPage} />
-            <Route exact path='/news' component={NewsPage} />
-          </Switch>
-        </main>
-      </div>
-    </Suspense>
+    <div className='App'>
+      <Navbar />
+
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/news' component={NewsPage} />
+
+        {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
+        <PrivateRoute exact path='/projects' component={ProjectListPage} />
+        <PrivateRoute
+          exact
+          path='/projects/:id'
+          component={ProjectDetailsPage}
+        />
+        <PrivateRoute
+          exact
+          path='/projects/edit/:id'
+          component={EditProjectPage}
+        />
+
+        <AnonRoute exact path='/signup' component={SignupPage} />
+        <AnonRoute exact path='/login' component={LoginPage} />
+      </Switch>
+    </div>
   )
 }
 
