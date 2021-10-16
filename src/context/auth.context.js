@@ -4,10 +4,11 @@ const API_URL = process.env.REACT_APP_API_URL
 
 const AuthContext = React.createContext()
 
-function AuthProviderWrapper (props) {
+function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
+  const [userData, setUserData] = useState(null)
 
   const verifyStoredToken = () => {
     // Get the stored token from the localStorage
@@ -23,7 +24,8 @@ function AuthProviderWrapper (props) {
         .then((response) => {
           // If the server verifies that JWT token is valid  ✅
           const user = response.data
-          setUser(user)
+          setUser(user.token)
+          setUserData(user.userData)
           setIsLoggedIn(true)
           setIsLoading(false)
         })
@@ -31,6 +33,7 @@ function AuthProviderWrapper (props) {
           // If the server sends an error response (invalid token) ❌
           setIsLoggedIn(false)
           setUser(null)
+          setUserData(null)
           setIsLoading(false)
         })
     } else {
@@ -52,6 +55,7 @@ function AuthProviderWrapper (props) {
   }
 
   const logOutUser = () => {
+    setUserData(null)
     // Upon logout, remove the token from the localStorage
     localStorage.removeItem('authToken')
 
@@ -66,7 +70,15 @@ function AuthProviderWrapper (props) {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, isLoading, user, logInUser, logOutUser }}
+      value={{
+        isLoggedIn,
+        isLoading,
+        user,
+        logInUser,
+        logOutUser,
+        userData,
+        setUserData
+      }}
     >
       {props.children}
     </AuthContext.Provider>

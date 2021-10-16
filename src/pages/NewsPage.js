@@ -3,10 +3,7 @@ import axios from 'axios'
 
 import NewsCard from '../components/NewsCard'
 
-// const API_KEY = process.env.REACT_APP_API_NEWS_KEY
-// const API_URL = process.env.REACT_APP_API_NEWS_URL
-
-const NewsPage = () => {
+function NewsPage () {
   const [news, setNews] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -29,7 +26,7 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchNews = async () => {
       const response = await axios(options)
-      console.log(response.data.data.results)
+      // console.log(response.data.data.results)
       setNews(response.data.data.results)
       setLoading(false)
     }

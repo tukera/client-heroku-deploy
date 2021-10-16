@@ -34,7 +34,7 @@ function ProjectListPage() {
   return (
     <div className='ProjectListPage'>
       <AddProject refreshProjects={getAllProjects} />
-
+      {console.log(localStorage.getItem('_id'))}
       {loading && <div>Loading...</div>}
       {!loading &&
         projects?.map((project) => (
