@@ -2,55 +2,10 @@ import React, { useState, useContext, useEffect } from 'react'
 import { AuthContext } from './../context/auth.context'
 import axios from 'axios'
 
-import ButtonHandle from '../components/ButtonHandle'
-
 const Coin = ({ ...coins }) => {
   const { user, userData, setUserData } = useContext(AuthContext)
   const storedToken = localStorage.getItem('authToken')
-  const [isDeleted, setIsDeleted] = useState(false)
   const API_URL = process.env.REACT_APP_API_URL
-
-  const cryptocurrency = {
-    id: coins.id,
-    market_cap_rank: coins.market_cap_rank,
-    name: coins.name,
-    symbol: coins.symbol,
-    image: coins.image,
-    current_price: coins.current_price,
-    market_cap: coins.market_cap,
-    circulating_supply: coins.circulating_supply,
-    price_change_percentage_1y_in_currency:
-      coins.price_change_percentage_1y_in_currency,
-    price_change_percentage_24h_in_currency:
-      coins.price_change_percentage_24h_in_currency,
-    price_change_percentage_7d_in_currency:
-      coins.price_change_percentage_7d_in_currency,
-    price_change_percentage_14d_in_currency:
-      coins.price_change_percentage_14d_in_currency,
-    price_change_percentage_30d_in_currency:
-      coins.price_change_percentage_30d_in_currency,
-    price_change_percentage_200d_in_currency:
-      coins.price_change_percentage_200d_in_currency,
-    price_change_1y: coins.price_change_percentage_1y_in_currency
-  }
-
-  console.log(coins)
-
-  const handleSubmit = () => {
-    axios
-      .post(
-        `${API_URL}/add-favorite`,
-        {
-          cryptocurrency,
-          user: user
-        },
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      )
-      .then((res) => {
-        setUserData(res.data.cryptocurrency)
-      })
-      .catch((error) => console.log(error))
-  }
 
   return (
     <>
@@ -89,14 +44,6 @@ const Coin = ({ ...coins }) => {
         </td>
         <td className='align-middle font-monospace fw-bold'>
           € {coins.market_cap.toLocaleString()}
-        </td>
-        <td>
-          <button
-            onClick={handleSubmit}
-            className='btn btn-primary btn-sm w-100'
-          >
-            <i className='fas fa-star' />
-          </button>
         </td>
       </tr>
     </>

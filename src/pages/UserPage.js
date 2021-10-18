@@ -3,11 +3,11 @@ import axios from 'axios'
 
 import { AuthContext } from './../context/auth.context'
 import Table from '../components/Table'
-import Coin from '../components/Coin'
+import UserCoins from '../components/UserCoins'
 
 const API_URL = process.env.REACT_APP_API_URL
 
-function UserPage () {
+function UserPage() {
   const { user, userData } = useContext(AuthContext)
   const [cryptocurrency, setCryptocurrency] = useState([])
   const [loading, setLoading] = useState(true)
@@ -32,7 +32,6 @@ function UserPage () {
     getAllCryptocurrency()
   }, [])
 
-  // console.log('storedToken ====> ', storedToken)
   return (
     <section className='UserPage container'>
       <div className='row mb-5'>
@@ -43,7 +42,7 @@ function UserPage () {
       {loading && <div>Loading...</div>}
       <Table>
         {!loading &&
-          cryptocurrency?.map((coins) => <Coin key={coins.id} {...coins} />)}
+          cryptocurrency?.map((coins) => <UserCoins key={coins.id} {...coins} />)}
       </Table>
     </section>
   )

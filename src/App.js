@@ -4,9 +4,6 @@ import HomePage from './pages/HomePage'
 import NewsPage from './pages/NewsPage'
 import UserPage from './pages/UserPage'
 import CurrencyPage from './pages/CurrencyPage'
-import ProjectListPage from './pages/ProjectListPage'
-import ProjectDetailsPage from './pages/ProjectDetailsPage'
-import EditProjectPage from './pages/EditProjectPage'
 
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
@@ -26,19 +23,8 @@ function App () {
         <Route exact path='/news' component={NewsPage} />
 
         {/* 👇 UPDATE THE EXISTING ROUTES 👇  */}
-        <PrivateRoute exact path='/projects' component={ProjectListPage} />
         <PrivateRoute exact path='/cryptocurrency' component={CurrencyPage} />
         <PrivateRoute exact path='/user' component={UserPage} />
-        <PrivateRoute
-          exact
-          path='/projects/:id'
-          component={ProjectDetailsPage}
-        />
-        <PrivateRoute
-          exact
-          path='/projects/edit/:id'
-          component={EditProjectPage}
-        />
 
         <AnonRoute exact path='/signup' component={SignupPage} />
         <AnonRoute exact path='/login' component={LoginPage} />

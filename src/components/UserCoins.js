@@ -34,23 +34,31 @@ const Coin = ({ ...coins }) => {
     price_change_1y: coins.price_change_percentage_1y_in_currency
   }
 
-  console.log(coins)
-
-  const handleSubmit = () => {
-    axios
-      .post(
-        `${API_URL}/add-favorite`,
-        {
-          cryptocurrency,
-          user: user
-        },
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      )
-      .then((res) => {
-        setUserData(res.data.cryptocurrency)
+  const handleDelete = () => {
+    axios({
+      method: 'POST',
+      url: `${API_URL}/delete-favorite`,
+      data: { cryptocurrency, user: user }
+    })
+      .then((result) => {
+        setUserData(result.data.cryptocurrency)
+        setIsDeleted(true)
       })
       .catch((error) => console.log(error))
   }
+
+  useEffect(() => {
+    if (userData && userData.favorites && cryptocurrency) {
+      const foundCrypto = userData.favorites.filter((cryptocurrency) => {
+        return coins.id === cryptocurrency._id
+      })
+      if (foundCrypto.length === 0) {
+        setIsDeleted(true)
+      } else {
+        setIsDeleted(false)
+      }
+    }
+  }, [userData, cryptocurrency])
 
   return (
     <>
@@ -91,12 +99,9 @@ const Coin = ({ ...coins }) => {
           € {coins.market_cap.toLocaleString()}
         </td>
         <td>
-          <button
-            onClick={handleSubmit}
-            className='btn btn-primary btn-sm w-100'
-          >
-            <i className='fas fa-star' />
-          </button>
+        <button onClick={handleDelete} className='btn btn-danger btn-sm w-100'>
+          <i className='fas fa-star' />
+        </button>
         </td>
       </tr>
     </>
