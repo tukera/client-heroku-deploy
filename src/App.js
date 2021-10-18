@@ -1,4 +1,3 @@
-import './App.css'
 import { Switch, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
@@ -13,6 +12,10 @@ import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import PrivateRoute from './components/PrivateRoute'
 import AnonRoute from './components/AnonRoute'
+
+import 'bootstrap/dist/js/bootstrap.bundle'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
 
 function App () {
   return (

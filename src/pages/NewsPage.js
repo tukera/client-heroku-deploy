@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import NewsCard from '../components/NewsCard'
 
-function NewsPage () {
+function NewsPage() {
   const [news, setNews] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -34,18 +34,14 @@ function NewsPage () {
   }, [])
 
   return (
-    <div className='NewsPage'>
-      <h2>Las Cryptocurrencies News</h2>
-      <div className='row'>
-        <div className='container'>
-          {loading && <div>Loading...</div>}
-          {!loading &&
-            news?.map((article, index) => (
-              <NewsCard key={index} {...article} />
-            ))}
-        </div>
+    <section className='NewsPage container'>
+      <h2 className='display-2 text-center mb-5'>Latest cryptocurrency news</h2>
+      <div className='row row-cols-1 row-cols-md-3 g-4 mb-5'>
+        {loading && <div>Loading...</div>}
+        {!loading &&
+          news?.map((article, index) => <NewsCard key={index} {...article} />)}
       </div>
-    </div>
+    </section>
   )
 }
 
